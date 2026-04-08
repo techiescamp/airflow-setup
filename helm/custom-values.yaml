@@ -5,6 +5,6 @@ dags:
     enabled: true
     repo: https://github.com/techiescamp/airflow-setup.git
     branch: main
-    rev: HEAD
     subPath: "dags"
     period: 60s
+    credentialsSecret: git-credentials
