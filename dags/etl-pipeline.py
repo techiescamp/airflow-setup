@@ -19,7 +19,7 @@ with DAG(
         cmds=["python", "-c"],
         arguments=["print('Extracting data...')"],
         container_resources=RESOURCES,
-        is_delete_operator_pod=False,
+        on_finish_action="keep_pod",
     )
 
     transform = KubernetesPodOperator(
@@ -28,7 +28,7 @@ with DAG(
         cmds=["python", "-c"],
         arguments=["print('Transforming data...')"],
         container_resources=RESOURCES,
-        is_delete_operator_pod=False,
+        on_finish_action="keep_pod",
     )
 
     load = KubernetesPodOperator(
@@ -37,7 +37,7 @@ with DAG(
         cmds=["python", "-c"],
         arguments=["print('Loading data...')"],
         container_resources=RESOURCES,
-        is_delete_operator_pod=False,
+        on_finish_action="keep_pod",
     )
 
     extract >> transform >> load
